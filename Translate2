@@ -25,3 +25,9 @@ def translate_article(text, lang):
   
   
 translate_article("Let's see if the deployment was succeeded.", "portugues")
+
+url = 'https://dev.to/kenakamu/azure-open-ai-in-vnet-3alo'
+text = extract_text_from_url(url)
+article = translate_article(text, "pt-br")
+
+print(article)
