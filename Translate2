@@ -1,0 +1,27 @@
+from langchain_openai.chat_models.azure import AzureChatOpenAI
+from getpass import getpass
+import os
+
+
+client = AzureChatOpenAI(
+    azure_endpoint= "https://ai-dio-bootcamp-dev-eastus2-001.openai.azure.com/  ",
+    api_key = getpass("Digite sua chave da API"),
+    api_version= "2024-12-01-preview",
+    deployment_name= "gpt-4o-mini",
+    max_retries=0                         
+)
+
+def translate_article(text, lang):
+  messages = [
+      ("system", "Voce atua como tradutor de textos"),
+      ("user", f"Traduza o {text} para o idioma {lang} e responda em markdown")
+
+  ]
+
+  response = client.invoke(messages)
+  print(response.content)
+  return response.content
+ 
+  
+  
+translate_article("Let's see if the deployment was succeeded.", "portugues")
